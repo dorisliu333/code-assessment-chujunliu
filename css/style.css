@@ -153,8 +153,10 @@ button:hover {
 }
 .resultDisplay {
   position: relative;
+  width: 80%;
   height: 35px;
   top: 70%;
-  left: -35%;
+  text-align: left;
+  padding-left: 3%;
   font-size: 130%;
 }
