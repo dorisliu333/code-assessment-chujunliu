@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coding Assessment</title>
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <header id="header">
+      <div class="headerContainer">
+        <div class="viewScore">view high scores</div>
+        <div class="timeCounter">
+          Time: <span class="timeCounterSpan">0</span>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="active" id="startPage">
+        <div class="startPageContainer">
+          <h1 class="startPageHeader">Coding Quiz Challenge</h1>
+          <p>
+            Try to answer the following code-related question within the time
+            limit.
+          </p>
+          <p>
+            Keep in mind that incorrect answers will penalize your score/time by
+            ten seconds!
+          </p>
+          <button class="startButton">Start Quiz</button>
+        </div>
+      </div>
+      <div class="inactive" id="quizPage">
+        <div class="quizPageContainer">
+         
+        </div>
+
+        <div class="resultDisplay"></div>
+        <div class="quizPageButton">
+            <button class="answerSubmitButton">Submit</button>
+            <button class="nextButton">Next</button>
+          </div>
+      </div>
+      <div class="inactive" id="donePage">
+        <div class="donePageContainer">
+          <h1>All Done!</h1>
+          <h2>Your final score is <span class="currentScoreSpan">0</span></h2>
+          <div class="enterField">
+            Enter initials:
+            <input type="text" class="initialsInput" />
+            <button class="initialsSubmitButton secondaryButton">Submit</button>
+          </div>
+          <div class="resultDisplay"></div>
+        </div>
+      </div>
+      <div class="inactive" id="highScoresPage">
+        <div class="highScoresPageContainer">
+          <h1>High Scores</h1>
+          <div class="highScoresDisplay">1: Doris</div>
+          <button class="backButton secondaryButton">Go back</button>
+          <button class="clearScoresButton secondaryButton">
+            Clear high scores
+          </button>
+        </div>
+      </div>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
