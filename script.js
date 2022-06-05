@@ -83,9 +83,12 @@ function showStartPage() {
     startPage.setAttribute("class", "active");
     header.setAttribute("class", "active");
     highScorePage.setAttribute("class", "inactive");
+    quizPage.setAttribute("class", "inactive")
+    donePage.setAttribute("class", "inactive");
     index = 0;
     timeCounter.innerHTML = 0;
     currentScore = 0;
+    clearInterval(timer);
     while (quizPageContainer.hasChildNodes()) {
         quizPageContainer.removeChild(quizPageContainer.firstChild);
     }
@@ -187,8 +190,11 @@ function submitAnswer() {
     answerSubmitButton.disabled = true;
 }
 function showDonePage() {
-    quizPage.setAttribute("class", "inactive")
-    donePage.setAttribute("class", "active")
+    quizPage.setAttribute("class", "inactive");
+    donePage.setAttribute("class", "active");
+    highScorePage.setAttribute("class", "inactive");
+    startPage.setAttribute("class", "inactive");
+    highScorePage.setAttribute("class", "inactive");
     currentScoreSpan.textContent = currentScore;
 }
 function submitInitial() {
@@ -198,19 +204,23 @@ function submitInitial() {
     } else {
         currentInitial = initialsInput.value;
         localStorage.setItem("initials", currentInitial)
+        localStorage.setItem("score", currentScore);
         showScorePage();
     }
 }
-function showScorePage() {
-    startPage.setAttribute("class", "inactive");
-    header.setAttribute("class", "inactive");
+function showScorePage() { 
     highScorePage.setAttribute("class", "active");
+    startPage.setAttribute("class", "inactive");
+    header.setAttribute("class", "inactive"); 
+    quizPage.setAttribute("class", "inactive")
     donePage.setAttribute("class", "inactive");
-    var preInitials = localStorage.getItem("initials");
+    var prevInitials = localStorage.getItem("initials");
+    var prevScore = localStorage.getItem("score");
+    console.log(prevScore)
     if(localStorage.getItem("initials")===null){
         highScoresDisplay.innerHTML = 'no records';
     }else{
-        highScoresDisplay.innerHTML = `${preInitials} : ${currentScore}`;
+        highScoresDisplay.innerHTML = `${prevInitials} : ${prevScore}`;
     }
     
 }
