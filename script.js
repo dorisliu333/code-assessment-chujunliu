@@ -207,7 +207,11 @@ function submitInitial() {
         return;
     } else {
         currentInitial = initialsInput.value;
-        const highScoreList = JSON.parse(localStorage.getItem("initials")) || [];
+        // const highScoreList = JSON.parse(localStorage.getItem("initials")) || [];
+        let highScoreList = [];
+        if(localStorage.getItem("initials")){
+            highScoreList = JSON.parse(localStorage.getItem("initials"));
+        }
         highScoreList.push({ initial: currentInitial, score: currentScore })
         localStorage.setItem("initials", JSON.stringify(highScoreList))
         showScorePage();
