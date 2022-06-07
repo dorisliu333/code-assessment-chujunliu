@@ -10,7 +10,6 @@ var nextButton = document.querySelector(".nextButton");
 var initialsSubmitButton = document.querySelector(".initialsSubmitButton")
 var timeCounter = document.querySelector(".timeCounterSpan");
 var initialsInput = document.querySelector(".initialsInput");
-var highScoresDisplay = document.querySelector(".highScoresDisplay")
 var quizPageQuestion = document.querySelector(".quizPageQuestion")
 var options = document.getElementsByClassName('answer');
 var quizPageContainer = document.querySelector('.quizPageContainer');
@@ -18,7 +17,9 @@ var quizPageQuestion = document.querySelector(".quizPageQuestion");
 var answerSubmitButton = document.querySelector(".answerSubmitButton");
 var currentScoreSpan = document.querySelector(".currentScoreSpan")
 var resultDisplay = document.querySelector(".resultDisplay");
-var clearScoresButton = document.querySelector(".clearScoresButton")
+var clearScoresButton = document.querySelector(".clearScoresButton");
+var highScoresContainer = document.querySelector(".highScoresContainer");
+
 var timeCount;
 var highestScore;
 var currentScore = 0;
@@ -91,6 +92,9 @@ function showStartPage() {
     clearInterval(timer);
     while (quizPageContainer.hasChildNodes()) {
         quizPageContainer.removeChild(quizPageContainer.firstChild);
+    }
+    while (highScoresContainer.firstChild) {
+        highScoresContainer.removeChild(highScoresContainer.firstChild);
     }
     initialsInput.value = ''
 }
@@ -203,31 +207,31 @@ function submitInitial() {
         return;
     } else {
         currentInitial = initialsInput.value;
-        localStorage.setItem("initials", currentInitial)
-        localStorage.setItem("score", currentScore);
+        const highScoreList = JSON.parse(localStorage.getItem("initials")) || [];
+        highScoreList.push({ initial: currentInitial, score: currentScore })
+        localStorage.setItem("initials", JSON.stringify(highScoreList))
         showScorePage();
     }
 }
-function showScorePage() { 
+function showScorePage() {
     highScorePage.setAttribute("class", "active");
     startPage.setAttribute("class", "inactive");
-    header.setAttribute("class", "inactive"); 
+    header.setAttribute("class", "inactive");
     quizPage.setAttribute("class", "inactive")
     donePage.setAttribute("class", "inactive");
-    var prevInitials = localStorage.getItem("initials");
-    var prevScore = localStorage.getItem("score");
-    console.log(prevScore)
-    if(localStorage.getItem("initials")===null){
-        highScoresDisplay.innerHTML = 'no records';
-    }else{
-        highScoresDisplay.innerHTML = `${prevInitials} : ${prevScore}`;
-    }
-    
+    var prevInitials = JSON.parse(localStorage.getItem("initials"))?.sort((a, b) => b.score - a.score);
+    prevInitials?.forEach((item, index) => {
+        const initialsDiv = document.createElement('div');
+        initialsDiv.setAttribute("class", "highScoresDisplay");
+        initialsDiv.innerHTML = `${index + 1}. ${item.initial} : ${item.score}`;
+        highScoresContainer.appendChild(initialsDiv);
+    })
 }
 
 function clearFunction() {
-
     localStorage.clear();
-    highScoresDisplay.innerHTML = '';
+    while (highScoresContainer.firstChild) {
+        highScoresContainer.removeChild(highScoresContainer.firstChild);
+    }
 }
 

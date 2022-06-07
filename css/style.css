@@ -147,6 +147,9 @@ button:hover {
   width: 30rem;
   background-color: var(--main-color);
   font-size: 120%;
+  border-radius: 5px;
+  color:var(--font-color);
+  padding: 1%;
 }
 .secondaryButton {
   font-size: 100%;
