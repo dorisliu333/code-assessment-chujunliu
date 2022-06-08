@@ -32,11 +32,10 @@
 * After user submit the initials, will turn to the High Score page, and will show the initials and score, and the score will be sorted from high to low.
 <img src='./image/09.png'>
   
-* If user click clear score button, the score record will be clear, if no click clear button, the score record will still show when you open the score page
+* If user click clear score button, the score record will be clear, if no click clear button, the score record will still show when you open the score pag, if click go back button will turn to the start page
 <img src='./image/10.png'>
-  
-* If click go back button will turn to the start page
 <img src='./image/11.png'>
+  
 
 ## Deployed URL:
  https://dorisliu333.github.io/code-assessment-chujunliu/
